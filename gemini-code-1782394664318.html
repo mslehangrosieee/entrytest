@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entry Test Ngữ Pháp - Ms Lê Hằng English</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8854C0;
+            --secondary: #FDCB6E;
+            --accent: #00C9A7;
+            --correct: #00D26A;
+            --wrong: #FF4757;
+            --text: #2D3436;
+            --card-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        * {
+            box-sizing: border-box;
+            font-family: 'Quicksand', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #8854C0, #E84393, #00C9A7, #FDCB6E);
+            background-size: 400% 400%;
+            animation: gradientBG 20s ease infinite;
+            position: relative;
+            padding: 20px 10px;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* SVG Floating Pattern Background */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            opacity: 0.12;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43 7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm1-61c3.16 0 5.72-2.56 5.72-5.72 0-3.16-2.56-5.72-5.72-5.72-3.16 0-5.72 2.56-5.72 5.72 0 3.16 2.56 5.72 5.72 5.72zm43 3c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM2 30c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm36 33c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm20-43c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3z'/%3E%3C/g%3E%3C/svg%3E");
+            animation: floatingPattern 40s linear infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes floatingPattern {
+            0% { background-position: 0 0; }
+            100% { background-position: 400px 800px; }
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        header {
+            text-align: center;
+            background: var(--card-bg);
+            padding: 15px 20px;
+            border-radius: 20px;
+            box-shadow: 0 8px 0 rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 3px solid var(--primary);
+        }
+
+        header h2 {
+            font-size: 1.1rem;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        header h1 {
+            font-size: 2rem;
+            color: #E84393;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .alert-box {
+            background: #FFF3CD;
+            border: 3px solid #FFEBAA;
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 0 #E6AD12;
+            color: #856404;
+        }
+
+        .alert-title {
+            font-weight: 700;
+            text-align: center;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .alert-content {
+            font-size: 0.95rem;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 24px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 0 rgba(0,0,0,0.15);
+            border: 3px solid #E0E0E0;
+            transition: transform 0.2s ease;
+            position: relative;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .question-num {
+            background: var(--primary);
+            color: white;
+            padding: 4px 14px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 0 rgba(0,0,0,0.2);
+        }
+
+        .question-text {
+            font-size: 1.2rem;
+            font-weight: 600;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 3px solid #E0E0E0;
+            border-radius: 18px;
+            padding: 14px 20px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.15s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 5px 0 #E0E0E0;
+            position: relative;
+        }
+
+        .option-btn:hover:not(.disabled) {
+            transform: scale(1.015);
+            border-color: var(--primary);
+            box-shadow: 0 5px 0 var(--primary);
+        }
+
+        .option-btn:active:not(.disabled) {
+            transform: translateY(3px);
+            box-shadow: 0 2px 0 var(--primary);
+        }
+
+        /* Khi đang làm bài và lựa chọn một câu */
+        .option-btn.selected-pending {
+            background: #E1F5FE !important;
+            border-color: #0288D1 !important;
+            box-shadow: 0 5px 0 #0288D1 !important;
+            color: #01579B !important;
+        }
+
+        /* Hiển thị sau khi đã nộp bài */
+        .option-btn.correct {
+            background: #E8FDF3 !important;
+            border-color: var(--correct) !important;
+            box-shadow: 0 5px 0 var(--correct) !important;
+            color: #0E6237 !important;
+        }
+
+        .option-btn.wrong {
+            background: #FFEBEF !important;
+            border-color: var(--wrong) !important;
+            box-shadow: 0 5px 0 var(--wrong) !important;
+            color: #AD1D28 !important;
+        }
+
+        .option-btn.disabled {
+            cursor: not-allowed;
+        }
+
+        .explanation-box {
+            margin-top: 20px;
+            background: #F1F2F6;
+            border-left: 6px solid var(--primary);
+            border-radius: 0 16px 16px 0;
+            padding: 15px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            display: none;
+            animation: slideDown 0.3s ease-out;
+        }
+
+        .explanation-box h4 {
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .submit-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn-submit {
+            background: #FF4757;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            padding: 15px 50px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            box-shadow: 0 8px 0 #D42635;
+            transition: all 0.1s ease;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 0 #D42635;
+        }
+
+        .btn-submit:active {
+            transform: translateY(6px);
+            box-shadow: 0 2px 0 #D42635;
+        }
+
+        /* Modal popup */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            opacity: 0; pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1; pointer-events: auto;
+        }
+
+        .modal-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            max-width: 550px;
+            width: 100%;
+            box-shadow: 0 20px 0 rgba(0,0,0,0.2);
+            border: 4px solid var(--primary);
+            text-align: center;
+            transform: scale(0.8);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: scale(1);
+        }
+
+        .modal-score {
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin: 15px 0;
+        }
+
+        .level-badge {
+            background: var(--secondary);
+            color: #7A5300;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 8px 20px;
+            border-radius: 15px;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 0 #D4A31B;
+            line-height: 1.4;
+        }
+
+        .teacher-comment {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            background: #F9F9F9;
+            padding: 15px;
+            border-radius: 15px;
+            border-left: 5px solid #E84393;
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .btn-close {
+            background: var(--accent);
+            color: white;
+            border: none;
+            padding: 10px 30px;
+            border-radius: 15px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 0 #00A387;
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: fixed;
+            width: 10px; height: 10px;
+            z-index: 999;
+            opacity: 0.8;
+            border-radius: 50%;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to { transform: translateY(105vh) rotate(360deg); }
+        }
+        
+        u { text-underline-offset: 4px; text-decoration-thickness: 2px; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h2>Giáo viên tạo: Ms Lê Hằng English</h2>
+        <h1>Entry Test Ngữ Pháp</h1>
+    </header>
+
+    <div class="alert-box">
+        <span class="alert-title">⚠️ LỜI NHẮC CỰC KỲ QUAN TRỌNG ⚠️</span>
+        <div class="alert-content">
+            Chỉ có đọc kỹ giải thích ngay sau mỗi câu, sau đó ghi lại từ vựng/cấu trúc mới vào vở để học thì mới thực sự giỏi lên. Làm cho xong mà không đọc giải thích hay đọc qua loa không ghi chép thì chỉ tốn thời gian vô ích! <strong>* Kéo tới đâu, làm tới đó! *</strong>
+        </div>
+    </div>
+
+    <div id="quiz-container"></div>
+
+    <div class="submit-section">
+        <button class="btn-submit" onclick="submitQuiz()">Nộp Bài</button>
+    </div>
+</div>
+
+<div class="modal-overlay" id="result-modal">
+    <div class="modal-card">
+        <h2>🎉 KẾT QUẢ BÀI KIỂM TRA 🎉</h2>
+        <div class="modal-score" id="modal-score-text">0/50</div>
+        <div class="level-badge" id="modal-level">Bậc: A1 - Beginner</div>
+        <div class="teacher-comment" id="modal-comment">Lời nhận xét từ cô...</div>
+        <button class="btn-close" onclick="closeModal()">Đóng & Xem đáp án chi tiết</button>
+    </div>
+</div>
+
+<script>
+// --- WEB AUDIO API AUDIO GENERATOR ---
+const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+
+function playSound(type) {
+    if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+    const osc = audioCtx.createOscillator();
+    const gain = audioCtx.createGain();
+    osc.connect(gain);
+    gain.connect(audioCtx.destination);
+
+    if (type === 'correct') {
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(587.33, audioCtx.currentTime);
+        osc.frequency.setValueAtTime(880, audioCtx.currentTime + 0.1);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.4);
+    } else if (type === 'wrong') {
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+        osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.3);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.3);
+    }
+}
+
+// --- CONFETTI EFFECT ---
+function makeConfetti() {
+    const colors = ['#FF4757', '#2ED573', '#1E90FF', '#FFA502', '#9B59B6'];
+    for(let i=0; i<60; i++) {
+        const div = document.createElement('div');
+        div.className = 'confetti';
+        div.style.left = Math.random() * 100 + 'vw';
+        div.style.top = '-10px';
+        div.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        div.style.width = Math.random() * 8 + 6 + 'px';
+        div.style.height = div.style.width;
+        div.style.animationDuration = Math.random() * 2 + 1.5 + 's';
+        document.body.appendChild(div);
+        setTimeout(() => div.remove(), 3500);
+    }
+}
+
+// --- DATA SOURCE ---
+const quizData = [
+    {
+        q: "Most university students _______________ on campus in their first year.",
+        options: ["lives", "live", "are living"],
+        correct: "live",
+        unit: "Unit 1",
+        exp: "1. Dịch toàn câu: 'Hầu hết các sinh viên đại học sống trong khuôn viên trường trong năm đầu tiên của họ.'\n2. Ý nghĩa đáp án: Các biến thể của động từ 'live' (sống).\n3. Tại sao chọn B? Chủ ngữ 'Most university students' là danh từ số nhiều, diễn tả một sự thật/thói quen chung chung nên ta dùng thì Hiện tại đơn với động từ nguyên mẫu 'live'.\n4. Tại sao các câu khác sai: A sai vì 'lives' dùng cho chủ ngữ số ít. C sai vì 'are living' diễn tả hành động đang xảy ra tạm thời, không phù hợp tính chất lâu dài ổn định trong năm đầu của sinh viên."
+    },
+    {
+        q: "From this graph we can see that the economy _______________ at the moment.",
+        options: ["improves", "improve", "is improving"],
+        correct: "is improving",
+        unit: "Unit 1",
+        exp: "1. Dịch toàn câu: 'Từ biểu đồ này chúng ta có thể thấy rằng nền kinh tế đang cải thiện vào lúc này.'\n2. Ý nghĩa đáp án: Các biến thể của động từ 'improve' (cải thiện).\n3. Tại sao chọn C? Có trạng ngữ chỉ thời gian 'at the moment' (ngay lúc này), báo hiệu một hành động, xu hướng đang diễn ra tại thời điểm nói -> Thì Hiện tại tiếp diễn 'is improving'.\n4. Tại sao các câu khác sai: A và B đều ở thì Hiện tại đơn, không phù hợp với trạng từ chỉ sự tiến trình tạm thời 'at the moment'."
+    },
+    {
+        q: "They _______________ personal computers when my father was a student.",
+        options: ["hadn't", "didn't have", "weren't having"],
+        correct: "didn't have",
+        unit: "Unit 2",
+        exp: "1. Dịch toàn câu: 'Họ không có máy tính cá nhân khi bố tôi còn là một sinh viên.'\n2. Ý nghĩa đáp án: Các dạng phủ định mang nghĩa 'không có'.\n3. Tại sao chọn B? 'Have' với ý nghĩa 'sở hữu' là một động từ trạng thái (stative verb), không chia ở thể tiếp diễn trong ngữ cảnh quá khứ đơn. Phủ định quá khứ đơn của động từ thường là 'didn't + V_inf'.\n4. Tại sao các câu khác sai: A sai cấu trúc (không dùng hadn't làm trợ động từ quá khứ đơn đơn độc). C sai vì 'have' sở hữu không dùng dạng tiếp diễn."
+    },
+    {
+        q: "I _______________ want to be a practising doctor but now I'm more interested in research.",
+        options: ["was used to", "used to", "would"],
+        correct: "used to",
+        unit: "Unit 2",
+        exp: "1. Dịch toàn câu: 'Tôi đã từng muốn trở thành một bác sĩ thực hành lâm sàng nhưng bây giờ tôi hứng thú với nghiên cứu hơn.'\n2. Ý nghĩa đáp án: A. was used to (đã quen với); B. used to (đã từng); C. would (thường - làm gì trong quá khứ).\n3. Tại sao chọn B? Cấu trúc 'used to + V_inf' diễn tả một trạng thái hoặc thói quen cũ trong quá khứ giờ không còn nữa. Hơn nữa động từ 'want' là động từ trạng thái nên không đi với 'would' để chỉ thói quen.\n4. Tại sao các câu khác sai: A sai nghĩa và ngữ pháp vì sau đó là động từ nguyên mẫu 'want'. C không dùng cho động từ trạng thái như 'want' khi chỉ quá khứ."
+    },
+    {
+        q: "The teacher _______________ us how to do the experiment when the fire bell rang.",
+        options: ["showed", "shown", "was showing"],
+        correct: "was showing",
+        unit: "Unit 2",
+        exp: "1. Dịch toàn câu: 'Giáo viên đang hướng dẫn chúng tôi cách làm thí nghiệm thì chuông báo cháy reo.'\n2. Ý nghĩa đáp án: Các biến thể của động từ 'show' (hướng dẫn/cho xem).\n3. Tại sao chọn C? Ngữ cảnh diễn tả một hành động đang diễn ra trong quá khứ ('was showing') thì một hành động khác chen ngang vào ('rang' - quá khứ đơn).\n4. Tại sao các câu khác sai: A sai vì không thể hiện sự tiếp diễn bị cắt ngang. B sai ngữ pháp vì 'shown' là quá khứ phân từ không đứng một mình làm vị ngữ chính."
+    },
+    {
+        q: "I finished my essay yesterday but _______________ it in to the tutor yet.",
+        options: ["I've given", "I haven't given", "I didn't give"],
+        correct: "I haven't given",
+        unit: "Unit 3",
+        exp: "1. Dịch toàn câu: 'Tôi đã hoàn thành bài luận của mình hôm qua nhưng tôi vẫn chưa nộp nó cho gia sư.'\n2. Ý nghĩa đáp án: A. Tôi đã đưa; B. Tôi chưa đưa; C. Tôi không đưa.\n3. Tại sao chọn B? Có sự xuất hiện của từ 'yet' ở cuối câu phủ định, dấu hiệu đặc trưng của thì Hiện tại hoàn thành để nói về việc chưa hoàn thành tính đến nay.\n4. Tại sao các câu khác sai: A sai nghĩa (vì 'yet' dùng trong câu phủ định/nghi vấn). C ở thì quá khứ đơn không kết hợp với 'yet' ở cuối câu trong tiếng Anh chuẩn."
+    },
+    {
+        q: "_______________ the experiment three times now with different results each time!",
+        options: ["We've done", "We did", "We've been doing"],
+        correct: "We've done",
+        unit: "Unit 3",
+        exp: "1. Dịch toàn câu: 'Chúng tôi đã làm thí nghiệm này ba lần rồi với những kết quả khác nhau mỗi lần!'\n2. Ý nghĩa đáp án: Các biến thể của hành động 'làm thí nghiệm'.\n3. Tại sao chọn B? Khi nhấn mạnh vào số lần thực hiện một hành động tính đến thời điểm hiện tại ('three times now'), ta phải sử dụng thì Hiện tại hoàn thành hoàn thành (Present Perfect Simple).\n4. Tại sao các câu khác sai: B sai vì nói về hành động cụ thể trong quá khứ không có liên kết số lần tới nay. C sai vì thì Hiện tại hoàn thành tiếp diễn không dùng để nhấn mạnh số lần thực hiện."
+    },
+    {
+        q: "When I arrived the lecture _______________ so I didn't find it easy to follow.",
+        options: ["started", "had started", "had been starting"],
+        correct: "had started",
+        unit: "Unit 4",
+        exp: "1. Dịch toàn câu: 'Khi tôi đến, bài giảng đã bắt đầu rồi nên tôi thấy không dễ để theo kịp.'\n2. Ý nghĩa đáp án: Các biến thể của động từ 'start' (bắt đầu).\n3. Tại sao chọn B? Hành động bài giảng bắt đầu diễn ra trước thời điểm 'tôi đến' (quá khứ đơn), hành động xảy ra trước một mốc quá khứ khác phải chia thì Quá khứ hoàn thành.\n4. Tại sao các câu khác sai: A sai vì nếu dùng 'started' nghĩa là tôi đến rồi bài giảng mới bắt đầu. C sai vì hành động 'start' diễn ra tức thì, không kéo dài liên tục để dùng thể tiếp diễn."
+    },
+    {
+        q: "She _______________ well at school but that changed when she became friends with a different group of girls.",
+        options: ["did", "had done", "had been doing"],
+        correct: "had been doing",
+        unit: "Unit 4",
+        exp: "1. Dịch toàn câu: 'Cô ấy đã từng học rất tốt ở trường nhưng điều đó đã thay đổi khi cô ấy kết bạn với một nhóm bạn nữ khác.'\n2. Ý nghĩa đáp án: Các dạng của động từ 'do well' (học tốt).\n3. Tại sao chọn C? Hành động học tốt diễn ra liên tục, kéo dài suốt một khoảng thời gian trong quá khứ trước mốc thay đổi ('changed' - quá khứ đơn), nên dùng Quá khứ hoàn thành tiếp diễn để nhấn mạnh quá trình liên tục.\n4. Tại sao các câu khác sai: A chỉ là quá khứ đơn chung chung không làm bật lên tiến trình trước đó. B ít chính xác hơn C vì không nhấn mạnh tính tiếp diễn liên tục của việc học."
+    },
+    {
+        q: "_______________ the doctor at 2.00 this afternoon so I can't go to the lecture.",
+        options: ["I'm seeing", "I see", "I will see"],
+        correct: "I'm seeing",
+        unit: "Unit 5",
+        exp: "1. Dịch toàn câu: 'Tôi sẽ đi gặp bác sĩ vào lúc 2 giờ chiều nay nên tôi không thể đi nghe bài giảng được.'\n2. Ý nghĩa đáp án: A. Tôi đang/sẽ gặp; B. Tôi gặp; C. Tôi sẽ gặp.\n3. Tại sao chọn A? Thì Hiện tại tiếp diễn được sử dụng rộng rãi để diễn tả một kế hoạch, lịch trình cụ thể đã được sắp xếp chắc chắn trong tương lai (đã đặt lịch hẹn với bác sĩ).\n4. Tại sao các câu khác sai: B diễn tả thói quen sự thật. C diễn tả quyết định bộc phát ngay lúc nói, không phù hợp cho một cuộc hẹn có giờ giấc cụ thể."
+    },
+    {
+        q: "My sister _______________ economics and politics when she goes to university.",
+        options: ["is going to study", "studies", "will study"],
+        correct: "is going to study",
+        unit: "Unit 5",
+        exp: "1. Dịch toàn câu: 'Chị gái tôi dự định sẽ học ngành kinh tế và chính trị khi chị ấy vào đại học.'\n2. Ý nghĩa đáp án: Các cấu trúc diễn tả hành động học trong tương lai.\n3. Tại sao chọn A? Cấu trúc 'be going to + V' được dùng để nói về một ý định, dự định hoặc kế hoạch đã được nhen nhóm, suy tính từ trước.\n4. Tại sao các câu khác sai: B dùng cho lịch trình tàu xe cố định. C dùng cho dự đoán không căn cứ hoặc quyết định tức thời, việc chọn ngành học là dự định lớn nên dùng 'be going to' chuẩn nhất."
+    },
+    {
+        q: "While we're working on the project our boss _______________ on a beach in Greece!",
+        options: ["will sit", "will have sat", "will be sitting"],
+        correct: "will be sitting",
+        unit: "Unit 6",
+        exp: "1. Dịch toàn câu: 'Trong khi chúng tôi đang làm dự án, sếp của chúng tôi chắc sẽ đang ngồi trên bãi biển ở Hy Lạp!'\n2. Ý nghĩa đáp án: Các biến thể tương lai của động từ 'sit' (ngồi).\n3. Tại sao chọn C? Cấu trúc song hành với 'While' diễn tả một hành động đang xảy ra tại một thời điểm liên tục trong tương lai -> Thì Tương lai tiếp diễn (will be sitting).\n4. Tại sao các câu khác sai: A là tương lai đơn không thể hiện tính tiếp diễn đồng thời. B là tương lai hoàn thành, chỉ hành động sẽ hoàn tất trước một thời điểm."
+    },
+    {
+        q: "If the trend continues, the average income _______________ by 107% by 2020.",
+        options: ["will increase", "will have increased", "will be increasing"],
+        correct: "will have increased",
+        unit: "Unit 6",
+        exp: "1. Dịch toàn câu: 'Nếu xu hướng này tiếp tục, thu nhập trung bình sẽ tăng 107% tính trước năm 2020.'\n2. Ý nghĩa đáp án: Các biến thể tương lai của động từ 'increase'.\n3. Tại sao chọn B? Có dấu hiệu dấu mốc thời gian 'by + mốc tương lai' (by 2020: tính trước năm 2020) -> Dấu hiệu bắt buộc của thì Tương lai hoàn thành (will have + V3/ed).\n4. Tại sao các câu khác sai: A và C không dùng để diễn tả một hành động hoàn thành tính trước một mốc thời gian xác định."
+    },
+    {
+        q: "You can base your geography assignment on _______________ country - it doesn't matter which.",
+        options: ["a", "some", "any"],
+        correct: "any",
+        unit: "Unit 7",
+        exp: "1. Dịch toàn câu: 'Bạn có thể dựa bài tập địa lý của mình vào bất kỳ quốc gia nào - không quan trọng là nước nào.'\n2. Ý nghĩa đáp án: A. một; B. một vài; C. bất kỳ.\n3. Tại sao chọn C? Từ 'any' đi với danh từ số ít trong câu khẳng định mang ý nghĩa là 'bất cứ cái nào/ai nào', rất phù hợp với vế bổ trợ phía sau 'it doesn't matter which' (không quan trọng nước nào).\n4. Tại sao các câu khác sai: A và B không diễn tả được tính lựa chọn tự do, thoải mái 'bất kỳ' như ngữ cảnh yêu cầu."
+    },
+    {
+        q: "There aren't _______________ places left on the course so you'd better apply soon.",
+        options: ["much", "many", "lots of"],
+        correct: "many",
+        unit: "Unit 7",
+        exp: "1. Dịch toàn câu: 'Không còn nhiều chỗ trống trong khóa học đâu nên tốt nhất bạn nên nộp đơn sớm.'\n2. Ý nghĩa đáp án: A. nhiều (dùng cho danh từ không đếm được); B. nhiều (dùng cho danh từ đếm được số nhiều); C. nhiều (thường dùng trong câu khẳng định).\n3. Tại sao chọn B? 'places' là danh từ đếm được số nhiều, và câu này ở dạng phủ định ('aren't'), vì vậy 'many' là lựa chọn chuẩn xác nhất.\n4. Tại sao các câu khác sai: A đi với danh từ không đếm được. C ít khi dùng trong câu phủ định tự nhiên như 'many'."
+    },
+    {
+        q: "I don't know whether to accept the job offer. It's _______________ .",
+        options: ["a difficult decision", "the difficult decision", "difficult decision"],
+        correct: "a difficult decision",
+        unit: "Unit 8",
+        exp: "1. Dịch toàn câu: 'Tôi không biết có nên nhận lời mời làm việc này không. Đó là một quyết định khó khăn.'\n2. Ý nghĩa đáp án: Các cách dùng mạo từ với cụm danh từ 'difficult decision'.\n3. Tại sao chọn A? Cụm danh từ 'decision' là danh từ đếm được số ít, khi nhắc đến lần đầu mang tính chất phân loại, mô tả ta dùng mạo từ bất định 'a'.\n4. Tại sao các câu khác sai: B chưa xác định cụ thể từ trước để dùng 'the'. C danh từ đếm được số ít không đứng trống trải mà không có mạo từ."
+    },
+    {
+        q: "For those of you new to the company, this leaflet is full of _______________ .",
+        options: ["a valuable information", "the valuable information", "valuable information"],
+        correct: "valuable information",
+        unit: "Unit 8",
+        exp: "1. Dịch toàn câu: 'Đối với những ai mới vào công ty, tờ rơi này có đầy thông tin quý giá.'\n2. Ý nghĩa đáp án: Các biến thể kèm mạo từ của 'valuable information'.\n3. Tại sao chọn C? 'Information' là một danh từ KHÔNG ĐẾM ĐƯỢC (uncountable noun), do đó không bao giờ đi kèm với mạo từ 'a/an'. Ở đây mang nghĩa chung chung nên không dùng 'the'.\n4. Tại sao các câu khác sai: A sai nghiêm trọng vì dùng 'a' với danh từ không đếm được. B dùng 'the' là sai vì thông tin này chưa được định vị cụ thể trước đó."
+    },
+    {
+        q: "The manager interviewed _______________ candidates in turn.",
+        options: ["each of the", "each", "every"],
+        correct: "each of the",
+        unit: "Unit 8",
+        exp: "1. Dịch toàn câu: 'Người quản lý đã lần lượt phỏng vấn từng ứng viên một.'\n2. Ý nghĩa đáp án: A. Mỗi người trong số...; B. Mỗi; C. Mọi.\n3. Tại sao chọn A? Theo sau chỗ trống là danh từ số nhiều 'candidates'. Cấu trúc đúng là 'each of the + danh từ số nhiều'.\n4. Tại sao các câu khác sai: B và C ('each' và 'every') bắt buộc phải đi trực tiếp với danh từ số ít, không thể đi trực tiếp với danh từ số nhiều."
+    },
+    {
+        q: "I know it's not much of a present but I made it _______________ .",
+        options: ["me", "myself", "by myself"],
+        correct: "myself",
+        unit: "Unit 9",
+        exp: "1. Dịch toàn câu: 'Tôi biết món quà này không có gì to tát nhưng chính tự tay tôi đã làm ra nó.'\n2. Ý nghĩa đáp án: A. tôi (tân ngữ); B. chính tôi (đại từ phản thân nhấn mạnh); C. một mình tôi.\n3. Tại sao chọn B? Sử dụng đại từ phản thân 'myself' đứng cuối câu nhằm mục đích nhấn mạnh danh tính người thực hiện hành động ('chính tôi làm, không phải mua').\n4. Tại sao các câu khác sai: A không phù hợp cấu trúc câu đã có tân ngữ 'it'. C 'by myself' đồng nghĩa 'alone' (một mình), ở đây nhấn mạnh việc tự tay làm thì dùng 'myself' sẽ tự nhiên hơn."
+    },
+    {
+        q: "You should visit Bath. It's _______________ city.",
+        options: ["a historical and interesting", "a historical interesting", "an interesting historical"],
+        correct: "an interesting historical",
+        unit: "Unit 10",
+        exp: "1. Dịch toàn câu: 'Bạn nên đến thăm Bath. Đó là một thành phố lịch sử rất thú vị.'\n2. Ý nghĩa đáp án: Thứ tự sắp xếp các tính từ trước danh từ.\n3. Tại sao chọn C? Theo quy tắc trật tự tính từ OSASCOMP: Opinion (Ý kiến - interesting) đứng trước Origin/History (Lịch sử/Thời gian - historical). Vì 'interesting' bắt đầu bằng nguyên âm 'i' nên dùng mạo từ 'an'.\n4. Tại sao các câu khác sai: A và B sai trật tự tính từ nghiêm trọng."
+    },
+    {
+        q: "The government has released some _______________ data showing how schools are not providing an adequate education to our children.",
+        options: ["shocking", "shock", "shocked"],
+        correct: "shocking",
+        unit: "Unit 10",
+        exp: "1. Dịch toàn câu: 'Chính phủ đã công bố một số dữ liệu gây sốc cho thấy các trường học đang không cung cấp một nền giáo dục đầy đủ cho con em chúng ta.'\n2. Ý nghĩa đáp án: A. gây sốc (chủ động/bản chất); B. sự sốc; C. bị sốc (cảm xúc).\n3. Tại sao chọn A? Cần một tính từ đứng trước bổ nghĩa cho danh từ 'data' (dữ liệu). Bản chất của dữ liệu này là gây sửng sốt, gây sốc cho người đọc nên dùng tính từ đuôi -ing (shocking).\n4. Tại sao các câu khác sai: B là danh từ. C là tính từ đuôi -ed chỉ cảm xúc của con người khi bị tác động, dữ liệu không thể tự 'bị sốc'."
+    },
+    {
+        q: "You really should go to Namibia. The scenery is _______________ stunning and the people are very friendly.",
+        options: ["very", "fairly", "absolutely"],
+        correct: "absolutely",
+        unit: "Unit 10",
+        exp: "1. Dịch toàn câu: 'Bạn thực sự nên đến Namibia. Phong cảnh ở đó tuyệt đẹp và người dân thì rất thân thiện.'\n2. Ý nghĩa đáp án: A. rất; B. khá là; C. hoàn toàn/cực kỳ.\n3. Tại sao chọn C? 'Stunning' là một tính từ cực cấp (extreme adjective - cực kỳ đẹp). Các tính từ cực cấp không đi với trạng từ giảm nhẹ/thông thường như 'very', mà phải đi với trạng từ nhấn mạnh tuyệt đối như 'absolutely'.\n4. Tại sao các câu khác sai: A và B không kết hợp với các tính từ mang nghĩa tuyệt đối như 'stunning'."
+    },
+    {
+        q: "This factory produces some of _______________ cameras in the world.",
+        options: ["best", "the best", "the most best"],
+        correct: "the best",
+        unit: "Unit 11",
+        exp: "1. Dịch toàn câu: 'Nhà máy này sản xuất một vài trong số những chiếc máy ảnh tốt nhất thế giới.'\n2. Ý nghĩa đáp án: Các dạng so sánh của tính từ 'good'.\n3. Tại sao chọn B? Cấu trúc so sánh nhất của tính từ đặc biệt 'good' là 'the best'. Cấu trúc tổng quát: 'some of + the + so sánh nhất + danh từ số nhiều'.\n4. Tại sao các câu khác sai: A thiếu mạo từ 'the'. C sai ngữ pháp nghiêm trọng vì đã dùng 'best' thì không có 'most'."
+    },
+    {
+        q: "_______________ people live in the countryside than 100 years ago.",
+        options: ["Less", "Few", "Fewer"],
+        correct: "Fewer",
+        unit: "Unit 11",
+        exp: "1. Dịch toàn câu: 'Ngày nay có ít người sống ở nông thôn hơn so với 100 năm trước.'\n2. Ý nghĩa đáp án: A. Ít hơn (không đếm được); B. Ít; C. Ít hơn (đếm được số nhiều).\n3. Tại sao chọn C? 'People' là danh từ đếm được số nhiều, kết hợp với từ 'than' báo hiệu cấu trúc so sánh hơn -> Dùng 'Fewer'.\n4. Tại sao các câu khác sai: A dùng sai vì 'Less' dùng cho danh từ không đếm được. B thiếu từ 'than' để hoàn thiện cấu trúc."
+    },
+    {
+        q: "The bookshop _______________ the end of the road is excellent.",
+        options: ["at", "on", "in"],
+        correct: "at",
+        unit: "Unit 12",
+        exp: "1. Dịch toàn câu: 'Hiệu sách ở cuối con đường rất tuyệt vời.'\n2. Ý nghĩa đáp án: Các giới từ chỉ vị trí.\n3. Tại sao chọn A? Cụm từ cố định chỉ vị trí tại một điểm cụ thể là 'at the end of...' (ở cuối của cái gì).\n4. Tại sao các câu khác sai: Giới từ 'on' hay 'in' không đi với cụm 'the end of the road' để chỉ địa điểm chính xác như 'at'."
+    },
+    {
+        q: "There were millions of people around the world _______________ the football match live on television.",
+        options: ["watched", "watching", "were watching"],
+        correct: "watching",
+        unit: "Unit 12",
+        exp: "1. Dịch toàn câu: 'Có hàng triệu người trên khắp thế giới đang theo dõi trận đấu bóng đá trực tiếp trên truyền hình.'\n2. Ý nghĩa đáp án: Các dạng của động từ 'watch' (xem).\n3. Tại sao chọn B? Đây là cấu trúc rút gọn mệnh đề quan hệ dạng chủ động: 'people who watched' rút gọn thành danh từ + V-ing ('people watching').\n4. Tại sao các câu khác sai: A mang nghĩa bị động. C sai vì câu đã có động từ chính là 'were' ở đầu, không thể nối trực tiếp một mệnh đề chia thì như thế."
+    },
+    {
+        q: "Scientists finally _______________ find a cure for the disease after years of research.",
+        options: ["managed to", "can", "could"],
+        correct: "managed to",
+        unit: "Unit 13",
+        exp: "1. Dịch toàn câu: 'Các nhà khoa học cuối cùng đã xoay sở tìm ra được phương pháp chữa trị cho căn bệnh này sau nhiều năm nghiên cứu.'\n2. Ý nghĩa đáp án: A. xoay sở/thành công làm được gì; B. có thể; C. có thể (quá khứ).\n3. Tại sao chọn A? Cụm 'managed to + V' nhấn mạnh việc vượt qua khó khăn để đạt kết quả thành công trong tình huống cụ thể quá khứ.\n4. Tại sao các câu khác sai: B sai thì. C 'could' chỉ năng lực chung chung, không phù hợp để nói về thành tựu cụ thể sau nhiều năm gian khổ bằng 'managed to'."
+    },
+    {
+        q: "She got a terrible mark in the exam so she _______________ very hard at all.",
+        options: ["mustn't have worked", "can't have worked", "didn't work"],
+        correct: "can't have worked",
+        unit: "Unit 13",
+        exp: "1. Dịch toàn câu: 'Cô ấy bị điểm rất tệ trong kỳ thi nên chắc chắn là cô ấy đã không học hành chăm chỉ tí nào.'\n2. Ý nghĩa đáp án: A. không được phép làm; B. chắc chắn đã không làm gì trong quá khứ; C. đã không làm việc.\n3. Tại sao chọn B? Cấu trúc 'can't have + V3/ed' dùng để đưa ra một suy đoán logic mang tính chắc chắn gần như tuyệt đối về một sự việc không thể đã xảy ra trong quá khứ dựa trên bằng chứng rõ ràng (điểm kém).\n4. Tại sao các câu khác sai: A không tồn tại dạng suy đoán này. C chỉ là câu tường thuật thực tế, không thể hiện tính suy luận logic từ vế trước."
+    },
+    {
+        q: "What _______________ in order to get a permit to work in your country?",
+        options: ["do I need to do", "must I do", "ought I do"],
+        correct: "do I need to do",
+        unit: "Unit 14",
+        exp: "1. Dịch toàn câu: 'Tôi cần phải làm gì để có được giấy phép lao động ở quốc gia của bạn?'\n2. Ý nghĩa đáp án: Các mẫu câu hỏi về nghĩa vụ/sự cần thiết.\n3. Tại sao chọn A? Cấu trúc hỏi với động từ thường: 'What do I need to do...' là tự nhiên và chính xác ngữ pháp nhất khi hỏi về quy trình thủ tục cần thiết.\n4. Tại sao các câu khác sai: B nghe quá trang trọng cưỡng ép. C sai cấu trúc vì 'ought' bắt buộc phải đi với 'to' ('ought I to do')."
+    },
+    {
+        q: "When you write your essays you _______________ copy ideas from books without referencing them properly.",
+        options: ["mustn't", "don't have to", "have to"],
+        correct: "mustn't",
+        unit: "Unit 14",
+        exp: "1. Dịch toàn câu: 'Khi bạn viết bài luận, bạn không được phép sao chép các ý tưởng từ sách mà không trích dẫn nguồn một cách chính xác.'\n2. Ý nghĩa đáp án: A. không được phép (cấm đoán); B. không cần phải; C. phải làm gì.\n3. Tại sao chọn A? 'Mustn't' chỉ sự cấm đoán mang tính quy định trường học/pháp luật (hành vi đạo văn bị cấm).\n4. Tại sao các câu khác sai: B mang nghĩa 'làm cũng được không làm cũng được' -> sai đạo đức học thuật. C ngược nghĩa hoàn toàn."
+    },
+    {
+        q: "Doctors have _______________ us to cut down on salt in our diets if we want to reduce the risk of getting heart disease.",
+        options: ["insisted", "suggested", "advised"],
+        correct: "advised",
+        unit: "Unit 15",
+        exp: "1. Dịch toàn câu: 'Các bác sĩ đã khuyên chúng tôi nên giảm lượng muối trong chế độ ăn nếu muốn giảm nguy cơ mắc bệnh tim.'\n2. Ý nghĩa đáp án: A. khăng khăng; B. gợi ý; C. khuyên bảo.\n3. Tại sao chọn C? Cấu trúc động từ đi kèm tân ngữ: 'advise + someone + to do something' (khuyên ai đó làm gì).\n4. Tại sao các câu khác sai: A đi với giới từ 'on'. B không đi với cấu trúc 'suggest + someone + to do'."
+    },
+    {
+        q: "_______________ this newspaper report, more women smoke than men nowadays.",
+        options: ["Apparently", "According to", "Supposedly"],
+        correct: "According to",
+        unit: "Unit 15",
+        exp: "1. Dịch toàn câu: 'Theo như báo cáo của tờ báo này, ngày nay phụ nữ hút thuốc nhiều hơn nam giới.'\n2. Ý nghĩa đáp án: A. Nhìn bề ngoài; B. Theo như; C. Cho là/giả sử là.\n3. Tại sao chọn B? Cụm từ cố định 'According to + nguồn thông tin/danh từ' dùng để dẫn nguồn tài liệu hoặc ý kiến của ai đó.\n4. Tại sao các câu khác sai: A và C là các trạng từ đứng độc lập bổ nghĩa cho mệnh đề, không đi trực tiếp ghép với cụm danh từ phía sau."
+    },
+    {
+        q: "My parents encouraged _______________ this course.",
+        options: ["me to do", "me doing", "me do"],
+        correct: "me to do",
+        unit: "Unit 16",
+        exp: "1. Dịch toàn câu: 'Bố mẹ tôi đã khuyến khích tôi tham gia khóa học này.'\n2. Ý nghĩa đáp án: Các dạng cấu trúc sau động từ encourage.\n3. Tại sao chọn A? Cấu trúc bắt buộc của động từ khích lệ: 'encourage + someone + to do something' (khuyến khích ai làm gì).\n4. Tại sao các câu khác sai: B và C sai công thức ngữ pháp của từ 'encourage'."
+    },
+    {
+        q: "What will you do if _______________ a good IELTS score?",
+        options: ["you don't get", "you didn't get", "you won't get"],
+        correct: "you don't get",
+        unit: "Unit 17",
+        exp: "1. Dịch toàn câu: 'Bạn sẽ làm gì nếu bạn không đạt được điểm IELTS cao?'\n2. Ý nghĩa đáp án: Các dạng phủ định trong mệnh đề If.\n3. Tại sao chọn A? Câu hỏi bắt đầu bằng 'What will you do' cho thấy đây là câu điều kiện loại 1. Do đó mệnh đề IF phải chia ở thì Hiện tại đơn.\n4. Tại sao các câu khác sai: B dùng cho điều kiện loại 2. C không dùng 'will/won't' trong mệnh đề phụ chứa IF thông thường."
+    },
+    {
+        q: "A recent government report has warned that _______________ we act immediately to reduce pollution, there will be serious consequences for the planet.",
+        options: ["provided that", "in case", "unless"],
+        correct: "unless",
+        unit: "Unit 17",
+        exp: "1. Dịch toàn câu: 'Một báo cáo gần đây của chính phủ đã cảnh báo rằng trừ khi chúng ta hành động ngay lập tức để giảm ô nhiễm, nếu không sẽ có những hậu quả nghiêm trọng cho hành tinh.'\n2. Ý nghĩa đáp án: A. miễn là; B. phòng khi; C. trừ khi (nếu không).\n3. Tại sao chọn C? 'Unless' bằng nghĩa với 'If... not'. Ngữ cảnh mang tính răn đe: Nếu không làm việc này thì hậu quả xấu sẽ xảy ra.\n4. Tại sao các câu khác sai: A và B không tạo nên ý nghĩa logic phù hợp với vế hậu quả tiêu cực phía sau."
+    },
+    {
+        q: "If I didn't have to work tonight, _______________ to relax now.",
+        options: ["I'd be able", "I'm able", "I'll be able"],
+        correct: "I'd be able",
+        unit: "Unit 18",
+        exp: "1. Dịch toàn câu: 'Nếu tôi không phải làm việc tối nay, tôi đã có thể thư giãn ngay bây giờ rồi.'\n2. Ý nghĩa đáp án: Các cấu trúc chỉ khả năng ở vế chính câu điều kiện.\n3. Tại sao chọn A? Mệnh đề If chia ở quá khứ đơn 'didn't have to' thể hiện đây là Câu điều kiện loại 2 (trái thực tế ở hiện tại). Do đó vế chính phải có dạng 'Would + V_inf' -> 'I'd be able' (I would be able).\n4. Tại sao các câu khác sai: B và C không tuân thủ cấu trúc của câu điều kiện loại 2."
+    },
+    {
+        q: "I wish that man _______________ tapping his fingers on the table. It's really annoying me.",
+        options: ["stopped", "had stopped", "would stop"],
+        correct: "would stop",
+        unit: "Unit 18",
+        exp: "1. Dịch toàn câu: 'Ước gì người đàn ông đó dừng việc gõ ngón tay lên bàn lại. Nó thực sự đang làm tôi bực mình.'\n2. Ý nghĩa đáp án: Các dạng của cấu trúc ước 'wish'.\n3. Tại sao chọn C? Cấu trúc 'S + wish + S + would + V' được dùng để thể hiện một mong muốn ai đó thay đổi một hành động gây khó chịu, phiền toái ngay tại thời điểm hiện tại.\n4. Tại sao các câu khác sai: A dùng cho ước muốn trái hiện tại không mang sắc thái phàn nàn hành vi. B dùng cho ước muốn trái quá khứ."
+    },
+    {
+        q: "I'm aiming _______________ a band 7 in IELTS.",
+        options: ["on", "for", "to"],
+        correct: "for",
+        unit: "Unit 19",
+        exp: "1. Dịch toàn câu: 'Tôi đang nhắm tới mục tiêu đạt được band 7 trong kỳ thi IELTS.'\n2. Ý nghĩa đáp án: Giới từ đi sau động từ aim.\n3. Tại sao chọn B? Cấu trúc cụm động từ đi với danh từ: 'aim for + mục tiêu/danh từ' (nhắm tới cái gì).\n4. Tại sao các câu khác sai: A sai giới từ. C đúng nếu sau đó là động từ nguyên mẫu ('aim to achieve'), nhưng ở đây là cụm danh từ 'a band 7' nên dùng 'for'."
+    },
+    {
+        q: "Do you have any knowledge _______________ how our education system works?",
+        options: ["of", "on", "for"],
+        correct: "of",
+        unit: "Unit 19",
+        exp: "1. Dịch toàn câu: 'Bạn có bất kỳ hiểu biết nào về cách hệ thống giáo dục của chúng ta vận hành không?'\n2. Ý nghĩa đáp án: Giới từ đi sau danh từ knowledge.\n3. Tại sao chọn A? Cấu trúc danh từ thông dụng: 'knowledge of something' (kiến thức, sự am hiểu về cái gì đó).\n4. Tại sao các câu khác sai: Giới từ 'on' đôi khi dùng cho bài giảng/sách về chủ đề cụ thể, nhưng trong câu hỏi thông thường về sự am hiểu cá nhân, 'knowledge of' là chuẩn nhất."
+    },
+    {
+        q: "The minister _______________ is responsible for education has just resigned.",
+        options: ["which", "who", "what"],
+        correct: "who",
+        unit: "Unit 20",
+        exp: "1. Dịch toàn câu: 'Vị bộ trưởng, người chịu trách nhiệm về giáo dục, vừa mới từ chức.'\n2. Ý nghĩa đáp án: Các đại từ quan hệ.\n3. Tại sao chọn B? 'The minister' là danh từ chỉ người, đóng vai trò chủ ngữ trong mệnh đề quan hệ nên ta dùng đại từ quan hệ 'who'.\n4. Tại sao các câu khác sai: A dùng cho vật. C không bao giờ làm đại từ quan hệ đứng sau danh từ bổ nghĩa."
+    },
+    {
+        q: "The University of St Andrews _______________ is the oldest university in Scotland.",
+        options: ["which was founded in 1413", ", which was founded in 1413,", ", that was founded in 1413,"],
+        correct: ", which was founded in 1413,",
+        unit: "Unit 20",
+        exp: "1. Dịch toàn câu: 'Đại học St Andrews, trường được thành lập vào năm 1413, là trường đại học lâu đời nhất ở Scotland.'\n2. Ý nghĩa đáp án: Các dạng mệnh đề quan hệ không xác định.\n3. Tại sao chọn B? 'The University of St Andrews' là tên riêng xác định, vì vậy mệnh đề bổ sung thông tin phải là Mệnh đề quan hệ không xác định, bắt buộc ngăn cách bằng dấu phẩy và dùng 'which'.\n4. Tại sao các câu khác sai: A thiếu dấu phẩy. C sai vì đại từ 'that' không đứng sau dấu phẩy trong mệnh đề quan hệ không xác định."
+    },
+    {
+        q: "Many children these days do not have a healthy diet. _______________ is possible that this is because less healthy foods are cheaper than healthy ones.",
+        options: ["What", "That", "It"],
+        correct: "It",
+        unit: "Unit 21",
+        exp: "1. Dịch toàn câu: 'Nhiều trẻ em ngày nay không có chế độ ăn lành mạnh. Có khả năng rằng điều này là do thực phẩm kém lành mạnh rẻ hơn thực phẩm lành mạnh.'\n2. Ý nghĩa đáp án: Các chủ ngữ giả đầu câu.\n3. Tại sao chọn C? Cấu trúc chủ ngữ giả thông dụng: 'It is + adjective + that + clause' (Thật là... khi mà...).\n4. Tại sao các câu khác sai: A và B không tạo thành cấu trúc chủ ngữ giả đúng ngữ pháp trong trường hợp này."
+    },
+    {
+        q: "The charity is trying to find ways to save and _______________ the world's endangered animal species.",
+        options: ["the charity is trying to find ways to protect", "to find ways to protect", "protect"],
+        correct: "protect",
+        unit: "Unit 21",
+        exp: "1. Dịch toàn câu: 'Tổ chức từ thiện đang cố gắng tìm cách cứu và bảo vệ các loài động vật đang bị đe dọa tuyệt chủng trên thế giới.'\n2. Ý nghĩa đáp án: Các cụm động từ để hoàn thiện cấu trúc song hành.\n3. Tại sao chọn C? Cấu trúc song hành kết nối qua từ 'and'. Trước đó ta có 'to save', động từ tiếp theo sau 'and' sẽ cùng chung cấu trúc nguyên mẫu nối với cụm 'ways to' -> chỉ cần động từ nguyên mẫu 'protect'.\n4. Tại sao các câu khác sai: A và B lặp từ vô nghĩa, làm câu rườm rà và sai cấu trúc ngữ pháp."
+    },
+    {
+        q: "In the past we threw a lot of our kitchen waste away, but today many items such as plastic bottles and newspapers _______________ .",
+        options: ["are recycled", "recycle", "need recycling"],
+        correct: "are recycled",
+        unit: "Unit 22",
+        exp: "1. Dịch toàn câu: 'Trong quá khứ chúng ta vứt bỏ rất nhiều rác thải nhà bếp, nhưng ngày nay nhiều vật dụng như chai nhựa và tờ báo được tái chế.'\n2. Ý nghĩa đáp án: A. được tái chế; B. tái chế; C. cần được tái chế.\n3. Tại sao chọn A? Chủ ngữ 'many items' là vật, không thể tự thực hiện hành động tái chế mà phải nhận tác động -> Dùng câu bị động hiện tại đơn 'are recycled' để nói về thực tế ngày nay.\n4. Tại sao các câu khác sai: B dạng chủ động nên sai nghĩa. C không phản ánh đúng sự tương phản thực tế mạnh bằng câu bị động A."
+    },
+    {
+        q: "I can't pick you up from the station on Wednesday because _______________ on that day.",
+        options: ["I'm fixing my car", "I'm having my car fixed", "I need my car fixed"],
+        correct: "I'm having my car fixed",
+        unit: "Unit 22",
+        exp: "1. Dịch toàn câu: 'Tôi không thể đón bạn ở nhà ga vào thứ Tư vì tôi sẽ mang xe đi sửa vào ngày hôm đó.'\n2. Ý nghĩa đáp án: A. Tôi tự sửa xe; B. Tôi thuê/mang xe ra tiệm sửa; C. Tôi cần xe được sửa.\n3. Tại sao chọn B? Cấu trúc truyền khiến: 'have + something + V3/ed' (có cái gì được làm bởi người khác). Đồng thời kết hợp thì Hiện tại tiếp diễn chỉ kế hoạch tương lai.\n4. Tại sao các câu khác sai: A sai vì người nói không tự sửa. C sai cấu trúc thời gian lập kế hoạch cụ thể."
+    },
+    {
+        q: "These drugs are the best medicine available as a treatment at the moment, _______________ they are expensive, unfortunately.",
+        options: ["although", "because", "so"],
+        correct: "although",
+        unit: "Unit 23",
+        exp: "1. Dịch toàn câu: 'Những loại thuốc này là biệt dược tốt nhất có sẵn để điều trị vào lúc này, mặc dù thật không may là chúng rất đắt tiền.'\n2. Ý nghĩa đáp án: A. mặc dù; B. bởi vì; C. vì vậy.\n3. Tại sao chọn A? Mối quan hệ giữa hai vế mang tính chất tương phản, đối lập (Thuốc tốt nhất >< Đắt tiền đáng tiếc) -> Dùng liên từ chỉ sự nhượng bộ 'although'.\n4. Tại sao các câu khác sai: B và C chỉ mối quan hệ nguyên nhân - kết quả, không đúng logic câu."
+    },
+    {
+        q: "Learning a foreign language is important because it helps you to understand other cultures better. _______________ it can be a useful skill in many areas of work.",
+        options: ["However,", "Despite this,", "In addition,"],
+        correct: "In addition,",
+        unit: "Unit 23",
+        exp: "1. Dịch toàn câu: 'Học một ngoại ngữ rất quan trọng vì nó giúp bạn hiểu các nền văn hóa khác tốt hơn. Ngoài ra, nó có thể là một kỹ năng hữu ích trong nhiều lĩnh vực công việc.'\n2. Ý nghĩa đáp án: A. Tuy nhiên; B. Mặc dù điều này; C. Ngoài ra / Thêm vào đó.\n3. Tại sao chọn C? Câu thứ hai đưa ra thêm một lợi ích bổ trợ cho việc học ngoại ngữ -> Dùng trạng từ liên kết thêm vào 'In addition'.\n4. Tại sao các câu khác sai: A và B dùng cho mối quan hệ tương phản trái ngược."
+    },
+    {
+        q: "_______________ I can't go to the conference as I've got to go to Sydney on business.",
+        options: ["Frankly", "Unfortunately", "Personally"],
+        correct: "Unfortunately",
+        unit: "Unit 24",
+        exp: "1. Dịch toàn câu: 'Thật không may, tôi không thể tham dự hội nghị vì tôi phải đi Sydney công tác.'\n2. Ý nghĩa đáp án: A. Thành thật mà nói; B. Thật không may; C. Về mặt cá nhân tôi.\n3. Tại sao chọn B? Trạng từ 'Unfortunately' dùng đầu câu để thông báo một điều đáng tiếc, không như mong muốn.\n4. Tại sao các câu khác sai: A và C không làm nổi bật được sắc thái tiếc nuối của việc lỡ mất một hội nghị."
+    },
+    {
+        q: "_______________ I think it's useful to write an outline of your essay before you start to write the first draft.",
+        options: ["Interestingly,", "Definitely,", "Personally,"],
+        correct: "Personally,",
+        unit: "Unit 24",
+        exp: "1. Dịch toàn câu: 'Đối với cá nhân tôi, tôi nghĩ việc viết đề cương cho bài luận trước khi bạn bắt đầu viết bản nháp đầu tiên là rất hữu ích.'\n2. Ý nghĩa đáp án: A. Thật thú vị là; B. Chắc chắn rồi; C. Theo cá nhân tôi.\n3. Tại sao chọn C? Trạng từ 'Personally' đứng đầu câu để nhấn mạnh đây là quan điểm riêng, góc nhìn cá nhân của người nói ('Personally, I think...').\n4. Tại sao các câu khác sai: A và B sai ngữ cảnh mở đầu ý kiến cá nhân thảo luận mượt mà."
+    },
+    {
+        q: "The _______________ of dark red spots is one of the first signs of the disease.",
+        options: ["appearance", "appearing", "appear"],
+        correct: "appearance",
+        unit: "Unit 25",
+        exp: "1. Dịch toàn câu: 'Sự xuất hiện của các đốm đỏ sẫm là một trong những dấu hiệu đầu tiên của căn bệnh này.'\n2. Ý nghĩa đáp án: A. sự xuất hiện (danh từ); B. việc xuất hiện; C. xuất hiện.\n3. Tại sao chọn A? Đứng sau mạo từ 'The' và trước giới từ 'of' bắt buộc phải là một Danh từ để làm chủ ngữ chính cho câu -> 'appearance'.\n4. Tại sao các câu khác sai: B không dùng danh động từ kiểu này khi đã có danh từ gốc chuyên dụng. C là động từ nên sai vị trí ngữ pháp."
+    }
+];
+
+// --- SHUFFLE FUNCTION ---
+function shuffleOptions(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+let systemQuestions = [];
+let quizSubmitted = false; // Trạng thái kiểm soát đã nộp bài hay chưa
+
+function initQuiz() {
+    const container = document.getElementById('quiz-container');
+    container.innerHTML = "";
+    quizSubmitted = false;
+    
+    systemQuestions = quizData.map((item, index) => {
+        let optionsCopy = [...item.options];
+        shuffleOptions(optionsCopy);
+        return {
+            ...item,
+            shuffledOptions: optionsCopy,
+            originalIndex: index,
+            userSelected: null
+        };
+    });
+
+    systemQuestions.forEach((item, index) => {
+        const card = document.createElement('div');
+        card.className = 'question-card';
+        card.id = `card-${index}`;
+
+        card.innerHTML = `
+            <div class="question-num">${item.unit} - Câu ${index + 1}</div>
+            <div class="question-text">${item.q}</div>
+            <div class="options-container">
+                ${item.shuffledOptions.map(opt => `
+                    <button class="option-btn" data-option="${opt.replace(/'/g, "\\'")}" onclick="selectAnswer(${index}, '${opt.replace(/'/g, "\\'")}', this)">
+                        ${opt}
+                    </button>
+                `).join('')}
+            </div>
+            <div class="explanation-box" id="exp-${index}">
+                <h4>💡 GIẢI THÍCH CHI TIẾT:</h4>
+                <div style="white-space: pre-line;">${item.exp}</div>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+// --- HÀM CHỌN ĐÁP ÁN KHI ĐANG LÀM BÀI ---
+function selectAnswer(qIdx, selectedOpt, btnElement) {
+    if (quizSubmitted) return; // Nếu đã nộp bài rồi thì khóa không cho chọn lại
+
+    const qItem = systemQuestions[qIdx];
+    qItem.userSelected = selectedOpt;
+
+    const card = document.getElementById(`card-${qIdx}`);
+    const allButtons = card.querySelectorAll('.option-btn');
+
+    // Reset trạng thái màu "đang chọn" của toàn bộ nút trong câu này
+    allButtons.forEach(btn => btn.classList.remove('selected-pending'));
+
+    // Chỉ tô màu highlight xanh nước biển cho nút vừa được chọn (chưa biết đúng/sai)
+    btnElement.classList.add('selected-pending');
+}
+
+// --- SUBMIT AND LEVEL ASSESSMENT ---
+function submitQuiz() {
+    if (quizSubmitted) {
+        alert("Con đã nộp bài rồi nha! Hãy cuộn xem lại đáp án chi tiết ở từng câu.");
+        return;
+    }
+
+    let correctCount = 0;
+    let unattempted = 0;
+
+    systemQuestions.forEach(q => {
+        if (q.userSelected === null) unattempted++;
+        else if (q.userSelected === q.correct) correctCount++;
+    });
+
+    if (unattempted > 0) {
+        alert(`Bé ơi! Con còn ${unattempted} câu chưa hoàn thành kìa. Hãy kéo lên làm nốt hết 50 câu rồi mới bấm nộp bài nha!`);
+        return;
+    }
+
+    // Đánh dấu đã nộp bài thành công
+    quizSubmitted = true;
+
+    // --- LOGIC HIỂN THỊ ĐÁP ÁN VÀ GIẢI THÍCH CHO TỪNG CÂU ---
+    systemQuestions.forEach((qItem, index) => {
+        const card = document.getElementById(`card-${index}`);
+        const allButtons = card.querySelectorAll('.option-btn');
+
+        allButtons.forEach(btn => {
+            btn.classList.remove('selected-pending'); // Xóa màu chờ nộp bài
+            btn.classList.add('disabled'); // Khóa toàn bộ tương tác nút
+
+            const btnText = btn.getAttribute('data-option');
+
+            // Nếu nút này là đáp án ĐÚNG -> hiện màu XANH LÁ
+            if (btnText === qItem.correct) {
+                btn.classList.add('correct');
+            }
+            // Nếu nút này do học sinh chọn và bị SAI -> hiện màu ĐỎ
+            if (btnText === qItem.userSelected && qItem.userSelected !== qItem.correct) {
+                btn.classList.add('wrong');
+            }
+        });
+
+        // Hiển thị khung giải thích chi tiết
+        document.getElementById(`exp-${index}`).style.display = 'block';
+    });
+
+    // --- TÍNH ĐIỂM & ĐÁNH GIÁ LEVEL ---
+    const percentage = (correctCount / systemQuestions.length) * 100;
+    let level = "";
+    let comment = "";
+
+    if (correctCount <= 12) {
+        level = "A1 - Beginner (TOEFL 0-31, IELTS 0-3.5, TOEIC 0-400)";
+    } else if (correctCount <= 22) {
+        level = "A2 - Elementary (TOEFL 32-45, IELTS 3.5-4.0, TOEIC 405-600)";
+    } else if (correctCount <= 32) {
+        level = "B1 - Intermediate (TOEFL 46-59, IELTS 4.0-5.0, TOEIC 785-900)";
+    } else if (correctCount <= 40) {
+        level = "B2 - Upper Intermediate (TOEFL 60-78, IELTS 5.5-6.0, TOEIC 705-780)";
+    } else if (correctCount <= 47) {
+        level = "C1 - Advanced (TOEFL 79-93, IELTS 6.5-7.5, TOEIC 785-900)";
+    } else {
+        level = "C2 - Proficient (TOEFL 94-120, IELTS 8.0-9.0, TOEIC 905-990)";
+    }
+
+    if (percentage < 50) {
+        comment = "Điểm lần này chưa cao lắm, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+        playSound('wrong');
+    } else if (percentage >= 60 && percentage <= 80) {
+        comment = "Con đã có tiến bộ khá ổn rồi, con cố gắng đọc kỹ giải thích đáp án và làm lại nha. Cô tin con sẽ làm tốt hơn ở lần sau!";
+        playSound('correct');
+        makeConfetti();
+    } else if (percentage >= 90) {
+        comment = "Làm tốt lắm, con cố gắng ring điểm 10 ở lần sau nha!";
+        playSound('correct');
+        makeConfetti();
+    } else {
+        comment = "Con đã hoàn thành bài thi! Hãy đọc kỹ giải thích chi tiết bên dưới để tích lũy thêm kiến thức nhé!";
+        playSound('correct');
+    }
+
+    // Đổ dữ liệu lên Popup Modal tổng kết
+    document.getElementById('modal-score-text').innerText = `${correctCount}/${systemQuestions.length}`;
+    document.getElementById('modal-level').innerText = `Trình độ: ${level}`;
+    document.getElementById('modal-comment').innerHTML = `<strong>Ms Lê Hằng nhận xét:</strong><br>${comment}`;
+    
+    document.getElementById('result-modal').classList.add('active');
+}
+
+function closeModal() {
+    document.getElementById('result-modal').classList.remove('active');
+    // Cuộn mượt mà lên đầu trang để học sinh bắt đầu xem lại từ câu số 1
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+window.onload = initQuiz;
+</script>
+
+</body>
+</html>
